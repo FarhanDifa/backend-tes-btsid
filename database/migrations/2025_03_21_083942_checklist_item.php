@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('checklist_items', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('checklist_id'); // Foreign key ke checklist
             $table->string('title');
             $table->text('description')->nullable();
             $table->boolean('is_completed')->default(false);
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
+        
+            $table->foreign('checklist_id')->references('id')->on('checklist')->onDelete('cascade');
         });
     }
 
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        //
     }
 };

@@ -37,8 +37,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
-            'name' => ['required']
+            'password' => ['required']
         ]);
  
         // Cari user berdasarkan email
