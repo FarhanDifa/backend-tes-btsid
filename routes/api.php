@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/checklist/{checkListId}/item/{checklistItemId}',[ChecklistItemController::class,'show']);//done
     Route::put('/checklist/{checkListId}/item/{checklistItemId}',[ChecklistItemController::class,'updateStatus']);//done
     Route::delete('/checklist/{checkListId}/item/{checklistItemId}',[ChecklistItemController::class,'delete']);//done
-    Route::put('/checklist/{checkListId}/item/rename/{checklistItemId}',[ChecklistItemController::class,'update']);
+    Route::put('/checklist/{checkListId}/item/rename/{checklistItemId}',[ChecklistItemController::class,'update']);//done
 
 });

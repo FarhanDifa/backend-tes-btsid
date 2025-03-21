@@ -136,4 +136,39 @@ class ChecklistItemController extends Controller
             'status' => 500
         ]);
     }
+
+    public function update(Request $request,$checkListId,$checkListItemId)
+    {
+        $checklistItem = ChecklistItem::query([
+            'id' => $checkListItemId,
+            'checklist_id' => $checkListId
+        ])->first();
+
+        if($checklistItem == null)
+        {
+            return response()->json([
+                'message' => 'Id tidak ditemukan',
+                'status' => 404
+            ]);
+        }
+
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $checklistItem->loadFillable($request->all());
+
+        if($checklistItem->save())
+        {
+            return response()->json([
+                'message' => 'Data berhasil diupdate',
+                'status' => 200
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Data gagal diupdate',
+            'status' => 500
+        ]);
+    }
 }
